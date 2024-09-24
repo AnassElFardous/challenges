@@ -6,7 +6,7 @@ int main()
     char nom[30];
     char prenom[30];
     int age;
-    char sexe [30];
+    char sexe [1];
     char adresse_email [100];
 
     printf("entrer nom:");
@@ -27,11 +27,11 @@ int main()
 
     printf("age: %d\n",age);
 
-    printf("entre sex:");
+    printf("entre sexe (M)asculin\\(F)eminin :");
 
     scanf("%s",&sexe);
 
-    printf("sex:%s",sexe);
+    printf("sex:%s\n",sexe);
 
     printf("entre adresse email: ");
 

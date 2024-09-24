@@ -4,9 +4,9 @@ int main() {
 
   int a,b,total_1;
 
-  printf("entrer valeur 1:");
+  printf("entrer valeur a:");
   scanf("%d",&a);
-  printf("entrer valeur 2:");
+  printf("entrer valeur b:");
   scanf("%d",&b);
 
 
