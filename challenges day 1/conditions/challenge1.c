@@ -3,12 +3,14 @@
 
 int main()
 {
-    int nombre = 5;
+    int nombre;
+    printf("entrer un nombre:");
+    scanf("%d",&nombre);
 
   if (nombre % 2 == 0) {
-    printf("%d is pair\n", nombre);
+    printf("%d  pair\n", nombre);
   } else {
-    printf("%d is impair\n", nombre);
+    printf("%d impair\n", nombre);
   }
 
 return 0;

@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+const pon1=2,pon2=3,pon3=5;
 int main() {
  float a,b,c,total;
  printf("entrer numb a:");
@@ -8,7 +8,7 @@ int main() {
  scanf("%f",&b);
  printf("entrer numb b:");
  scanf("%f",&c);
- total=(a+b+c)/3;
+ total=(a*pon1)+(b*pon2)+(c*pon3)/3;
  printf("=%.2f\n",total);
 
 
