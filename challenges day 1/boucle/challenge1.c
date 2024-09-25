@@ -5,7 +5,7 @@ int main() {
   printf("entrer valeur du multiplication:");
   scanf("%d",&i);
 
-  for (x = 0; x < 11; x++) {
+  for (x = 10; x >= 0; x--) {
     printf("%d * %d =%d\n", i,x,x*i);
   }
 
