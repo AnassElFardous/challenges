@@ -8,8 +8,8 @@ int main() {
 
   for (i=1;i<=n;i++){
     fact*=i;
+    printf("%d*%d=%d\n",n,i,fact);
   }
-printf("%d!=%d",n,fact);
+
   return 0;
 }
-
