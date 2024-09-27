@@ -6,9 +6,9 @@ int main() {
   printf("entre an integer: ");
   scanf("%d",&n);
 
-  for (i=0;i>=n;i++){
+  for (i=1;i<=n;i++){
     somme+=i;
   }
-printf("somme = %d",somme);
+  printf("la somme est %d",somme);
   return 0;
 }

@@ -2,23 +2,19 @@
 
 int main (){
 
+int x=0;
+int n;
 int i=0;
-int n,x;
-printf("entrer le nombre n:");
+printf("entrer nombre");
 scanf("%d",&n);
 
-while (i < x) {
-    if (i%2!=0)
-        printf("%d,",i);
-    i++;
-}
-for (i=0;i<=x;i++){
-
-    printf("%d",i) ;
-
-
-
-}
+while (i<n) {
+    if(x%2!=0){
+     printf("%d,",x);
+     i++;
+    }
+        x++;
+    }
 
 return 0;
 }
