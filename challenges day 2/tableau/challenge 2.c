@@ -4,7 +4,7 @@ int main (){
 int i,n;
 
 printf("entrer la taille de tableau:");
-scanf("%d",&n);
+ scanf("%d",&n);
 
 int nombres[n];
 
