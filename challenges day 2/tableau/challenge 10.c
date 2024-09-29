@@ -1,4 +1,4 @@
-// Online C compiler to run C program online
+
 #include <stdio.h>
 int main(){
 int taille,i;
@@ -25,11 +25,11 @@ for (i=0;i<taille;i++)
 {
     if(tab[i]==x){
        found=1;
-       printf("le nombre trouver%d",x);
+       printf("le nombre trouver:%d",x);
     }
-if(!found){
+    }
+    if(!found){
         printf("number is not here");
-    }
 }
     return 0;
 }
