@@ -1,20 +1,20 @@
 #include<stdio.h>
-void Somme(int x , int z){
-    int somme;
-    somme=x+z;
-    printf("some=%d",somme);
+int somme(int x , int z){
+    int som;
+    som=x+z;
 
-
+return som;
 }
 int main(){
 int x;
-int z;
+int z, som;
+
 printf("donne moi valeur:");
 scanf("%d",&x);
 printf("donne moi valeur:");
 scanf("%d",&z);
-
-Somme(x,z);
+ som=somme(x,z);
+printf("%d+%d=%d",x,z,som);
 
 return 0;
 }

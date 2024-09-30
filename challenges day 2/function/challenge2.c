@@ -6,13 +6,13 @@ return mlt;
 }
 int main(){
     int z,x;
-    int mltu;
+    int mlt;
 printf("entrer numbre x:");
 scanf("%d",&x);
 printf("entrer numbre x:");
 scanf("%d",&z);
-mltu=multipliation(x,z);
-printf("mlt=%d",mltu);
+mlt=multipliation(x,z);
+printf("mlt=%d",mlt);
 
 return 0;
 }

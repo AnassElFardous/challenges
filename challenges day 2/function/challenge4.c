@@ -1,5 +1,5 @@
 #include<stdio.h>
-int mini(int x,int z){
+void mini(int x,int z){
 
  if (x<z)
  {
@@ -10,7 +10,6 @@ int mini(int x,int z){
      printf("x is not great than z");
  }
 
-return mini;
 }
 int main (){
 
