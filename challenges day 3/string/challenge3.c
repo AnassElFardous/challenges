@@ -10,12 +10,5 @@ printf("%s_%s",first_name,last_name);
 
 
 
-
-
-
-
-
-
-
 return 0;
 }
