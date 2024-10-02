@@ -10,17 +10,17 @@ char e_mail[100];
 
 }contact;
 
-void ajouter(contact cont[],int *size){
+void ajouter(contact cont[],int size){
 printf("entree les contact:");
-scanf("%d",&*size);
+scanf("%d",&size);
 
-for (int i=0;i<*size;i++)
+for (int i=0;i<size;i++)
 {
-    printf("entree nom:");
+    printf("entree nom: ");
     scanf("%s",cont[i].nom);
-    printf("entree numero:");
+    printf("entree numero: ");
     scanf("%s",cont[i].numero);
-    printf("entree e_mail:");
+    printf("entree e_mail: ");
     scanf("%s",cont[i].e_mail);
 }
 }
@@ -38,15 +38,15 @@ for (int i=0;i<size;i++)
 
 }
 void Rechercher(contact cont[] ,int size){
-int newname;
-printf("entree le nom trouver");
+char newname[100];
+printf("entree le nom trouver:");
 scanf("%s",newname);
 int found=0;
 for (int i=0;i<size;i++)
 {
-    if (strcmp(cont[i].nom,newname))
+    if (strcmp(cont[i].nom,newname)==0)
     {
-        printf("contact est trouve");
+        printf("contact est trouve:\n%s\n%s\n%s:",cont[i].nom,cont[i].numero,cont[i].e_mail);
         found=1;
     }
 }
@@ -84,23 +84,23 @@ for (int i=0;i<size;i++)
 
 }
 void Supprimer(contact cont[] ,int *size){
-int newname;
+char newname[100];
 int i;
-printf("name you wanna Delete");
+printf("name you wanna Delete:");
 scanf("%s",newname);
 int found=0;
-for ( i=0;i<*size;i++);
+for( i=0;i<size;i++)
 {
 
    if (strcmp(cont[i].nom,newname)==0)
     {
-            printf("is found");
-       found=1;
-       for (int j=i;j<*size-1;j++)
+            printf("is found\n");
+            found=1;
+       for (int j=i;j<size-1;j++)
    {
        cont[j]=cont[j+1];
    }
-   (*size)--;
+   size--;
     }
 
 }
@@ -114,15 +114,16 @@ contact cont[100];
         printf("1. ajouter les contact \n");
         printf("2. afficher les contact \n");
         printf("3. modifier les contact \n");
-        printf("4. supprimer les contact \n");
-        printf("5. quitter\n");
+        printf("4. rechercher les contact \n");
+        printf("5. supprimer les contact \n");
+        printf("6. quitter\n");
         printf("choix nombre du menu : ");
         scanf("%d",&choix);
         printf("--------------------------------\n");
 
 switch (choix) {
             case 1:
-                ajouter(cont,&size);
+                ajouter(cont,size);
                 break;
             case 2:
                 afficher(cont,size);
@@ -131,10 +132,10 @@ switch (choix) {
                 Modifier(cont,size);
                 break;
             case 4:
-                Supprimer(cont,&size);
+                Rechercher(cont,size);
                 break;
             case 5:
-                Rechercher(cont,size);
+                Supprimer(cont,size);
                 break;
             case 6:
                 printf("quitter le programme \n");
