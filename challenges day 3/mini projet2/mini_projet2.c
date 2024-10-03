@@ -119,16 +119,14 @@ void Supprimer()
 }
 int main()
 {
-    int choix;
+   int choix;
     do
     {
         printf("menu :\n");
-        printf("1. ajouter les contact \n");
-        printf("2. afficher les contact \n");
-        printf("3. modifier les contact \n");
-        printf("4. rechercher les contact \n");
-        printf("5. supprimer les contact \n");
-        printf("6. quitter\n");
+        printf("1. ajouter  \n");
+        printf("2. afficher  \n");
+        printf("3. modifier  \n");
+        printf("4. quitter\n");
         printf("choix nombre du menu : ");
         scanf("%d",&choix);
         printf("--------------------------------\n");
@@ -145,19 +143,14 @@ int main()
             Modifier();
             break;
         case 4:
-            Rechercher();
-            break;
-        case 5:
-            Supprimer();
-            break;
-        case 6:
             printf("quitter le programme \n");
             break;
         default:
-            printf("the number not found \n");
+            printf("le nombre n'est pas trouvé \n");
         }
     }
-    while (choix != 6);
+    while (choix != 4);
 
-    return 0;
+return 0;
 }
+
