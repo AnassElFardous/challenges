@@ -77,6 +77,29 @@ void ajouter() {
 
     size += taille;
 }
+void ajouter_default() {
+    char noms[10][100] = {"Ahmed","Youssef","Fatima","Sara","Mohamed","Rania","Omar","Imane","Khalid","Nadia"};
+    char prenoms[10][100] = {"Bennani","ElFassi","Tazi","ElYousfi","Boulahcen","ElAmrani","Saidi","ElIdrissi","Zouhair","ElBakali"};
+
+    char statuts[4][100] = {"valide","reporte","annule","traite"};
+
+    for (int i = 0; i < 10; i++) {
+        dent[i].Reference_unique = i + 1;
+
+        strcpy(dent[i].Nom, noms[i]);
+        strcpy(dent[i].Prenom, prenoms[i]);
+
+        dent[i].age = 20 + rand() % 30;
+
+        sprintf(dent[i].Telephone, "06%d", rand() % 100000000);
+
+        strcpy(dent[i].statut, statuts[rand() % 4]);
+
+        sprintf(dent[i].Date_de_reservation, "0%d/0%d/202%d", rand() % 30 + 1, rand() % 12 + 1, rand() % 4);
+    }
+
+    size = 10;
+}
 
 void Modifier() {
     int reference, i;
@@ -202,7 +225,14 @@ void Rechercher() {
             int trouve = 0;
             for (int i = 0; i < size; i++) {
                 if (strcmp(dent[i].Nom, NAME) == 0) {
-                    printf("Contact trouve: \nNom: %s\n", dent[i].Nom);
+                        printf("reference: %d\n", dent[i].Reference_unique);
+                        printf("nom: %s\n", dent[i].Nom);
+                        printf("prenom: %s\n", dent[i].Prenom);
+                        printf("age: %d\n", dent[i].age);
+                        printf("telephone: %s\n", dent[i].Telephone);
+                        printf("statut: %s\n", dent[i].statut);
+                        printf("date de reservation: %s\n", dent[i].Date_de_reservation);
+                        printf("---------------------------------\n");
                     trouve = 1;
                     break;
                 }
@@ -218,7 +248,14 @@ void Rechercher() {
             trouve = 0;
             for (int i = 0; i < size; i++) {
                 if (dent[i].Reference_unique == REFerence) {
-                    printf("Contact trouve: \nReference: %d\n", dent[i].Reference_unique);
+                        printf("reference: %d\n", dent[i].Reference_unique);
+                        printf("nom: %s\n", dent[i].Nom);
+                        printf("prenom: %s\n", dent[i].Prenom);
+                        printf("age: %d\n", dent[i].age);
+                        printf("telephone: %s\n", dent[i].Telephone);
+                        printf("statut: %s\n", dent[i].statut);
+                        printf("date de reservation: %s\n", dent[i].Date_de_reservation);
+                        printf("---------------------------------\n");
                     trouve = 1;
                     break;
                 }
@@ -235,67 +272,162 @@ void Rechercher() {
         }
     } while (choix != 3);
 }
-void tri(){
-dentaires temp;
-for(int j=1;j<=size;j++)
-    for(int i=0;i<size-1;i++)
-        if (strcmp(dent[i].Nom,dent[i+1].Nom)) {
-                temp = dent[i];
-                dent[i] = dent[i+1];
-                dent[i+1] = temp;
+void tri() {
+    dentaires temp;
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - 1 - i; j++) {
+            if (strcmp(dent[j].Nom, dent[j + 1].Nom) > 0) {
+                temp = dent[j];
+                dent[j] = dent[j + 1];
+                dent[j + 1] = temp;
+            }
         }
-printf("liste des noms tries par order croissant\n");
+    }
+    printf("Liste des noms tries par ordre croissant:\n");
+    for (int i = 0; i < size; i++) {
+        printf("%s\n", dent[i].Nom);
+    }
+}
+
+void tries_par_statut() {
+    dentaires temp;
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - 1 - i; j++) {
+            if (strcmp(dent[j].statut, dent[j + 1].statut) > 0) {
+                temp = dent[j];
+                dent[j] = dent[j + 1];
+                dent[j + 1] = temp;
+            }
+        }
+    }
+    printf("Liste triee par statut:\n");
+    for (int i = 0; i < size; i++) {
+        printf("%s - %s\n", dent[i].Nom, dent[i].statut);
+    }
+}
+
+void Statistiques_moyen ()
+{
+int somme=0;
+float moyen;
 for (int i=0;i<size;i++)
 {
-    printf("%s\n",dent[i].Nom);
+    somme+=dent[i].age;
+}
+    moyen=somme/size;
+printf("la moyen est:%.2f",moyen);
+}
+void Statistiques_afficher_age() {
+    char promo[100] = "";
+    int choix;
+
+    do {
+        printf("<<<<<<Choisie un nombre>>>>>>\n");
+        printf("1 - Afficher Les enfants (<= 18 ans)\n");
+        printf("2 - Afficher Les jeunes (18 < age <= 35)\n");
+        printf("3 - Afficher Les adultes (> 35 ans)\n");
+        printf("4 - Quitter\n");
+        scanf("%d", &choix);
+
+        switch (choix) {
+            case 1:
+                strcpy(promo, "enfants");
+                break;
+            case 2:
+                strcpy(promo, "jeunes");
+                break;
+            case 3:
+                strcpy(promo, "adultes");
+                break;
+            case 4:
+                printf("quitter le programme.\n");
+                break;
+            default:
+                printf("Choix non valide.\n");
+                break;
+        }
+    } while (choix != 4 && promo[0] == '\0');
+    if (promo[0] != '\0') {
+        for (int i = 0; i < size; i++) {
+            if (strcmp(promo, "enfants") == 0 && dent[i].age <= 18) {
+                printf("Nom: %s, Prenom: %s, Age: %d\n", dent[i].Nom, dent[i].Prenom, dent[i].age);
+            } else if (strcmp(promo, "jeunes") == 0 && dent[i].age > 18 && dent[i].age <= 35) {
+                printf("Nom: %s, Prenom: %s, Age: %d\n", dent[i].Nom, dent[i].Prenom, dent[i].age);
+            } else if (strcmp(promo, "adultes") == 0 && dent[i].age > 35) {
+                printf("Nom: %s, Prenom: %s, Age: %d\n", dent[i].Nom, dent[i].Prenom, dent[i].age);
+            }
+        }
+    } else {
+        printf("Aucune categorie selectionnee.\n");
+    }
 }
 
-}
-void tries_par_statut()
+
+void nombre_valide()
 {
-
+int count=0;
 
    for (int i=0;i<size;i++)
    {
        if (strcmp(dent[i].statut, "valide")==0)
        {
-           printf("%s_%s\t",dent[i].Nom,dent[i].statut);
-       }
-       if (strcmp(dent[i].statut, "reporte")==0)
-       {
-           printf("%s-%s\t",dent[i].Nom,dent[i].statut);
-       }
-       if (strcmp(dent[i].statut, "annule")==0)
-       {
-           printf("%s-%s\t",dent[i].Nom,dent[i].statut);
-       }
-       if (strcmp(dent[i].statut, "traite")==0)
-       {
-           printf("%s-%s\t",dent[i].Nom,dent[i].statut);
+           count++;
        }
    }
+   printf("le nombre total de valide est : %d \n",count);
 
 }
-void Statistiques ()
+
+void nombre_reporte()
 {
-int somme=0;
-int moyen;
-for (int i=0;i<size;i++)
-{
-    somme+=dent[i].age;
+int count=0;
+
+   for (int i=0;i<size;i++)
+   {
+       if (strcmp(dent[i].statut, "reporte")==0)
+       {
+           count++;
+       }
+   }
+   printf("le nombre total de reporte est : %d\n",count);
+
 }
-for (int j=0;j<size;j++)
+
+void nombre_annule()
 {
-    moyen=somme/size;
+int count=0;
+
+   for (int i=0;i<size;i++)
+   {
+       if (strcmp(dent[i].statut, "annule")==0)
+       {
+           count++;
+       }
+   }
+   printf("le nombre total de annule est : %d\n",count);
+
 }
-printf("la moyen est:%d",moyen);
+
+void nombre_traite()
+{
+int count=0;
+
+   for (int i=0;i<size;i++)
+   {
+       if (strcmp(dent[i].statut, "traite")==0)
+       {
+           count++;
+       }
+   }
+   printf("le nombre total de traite est : %d\n",count);
+
 }
 
 int main() {
+     ajouter_default();
     int choix;
     do {
-        printf("--------------------------------\n");
-        printf(" menu :\n");
+        printf("\n menu :\n");
         printf("1. ajouter\n");
         printf("2. afficher\n");
         printf("3. modifier\n");
@@ -304,7 +436,9 @@ int main() {
         printf("6. tries par nom\n");
         printf("7. tries par statut\n");
         printf("8. moyen\n");
-        printf("9. quitter\n");
+        printf("9.Statistiques_afficher_age \n");
+        printf("10.afficher nombre pour chaque status \n");
+        printf("11. quitter\n");
         printf("choix numero du menu : ");
         scanf("%d", &choix);
         printf("--------------------------------\n");
@@ -332,15 +466,24 @@ int main() {
             tries_par_statut();
             break;
         case 8:
-            Statistiques();
+            Statistiques_moyen();
             break;
         case 9:
+            Statistiques_afficher_age();
+            break;
+        case 10:
+            nombre_valide();
+            nombre_reporte();
+            nombre_annule();
+            nombre_traite();
+            break;
+        case 11:
             printf("quitter le programme.\n");
             break;
         default:
             printf("numero non trouve.\n");
         }
-    } while (choix != 9);
+    } while (choix != 11);
 
     return 0;
 }
