@@ -72,6 +72,7 @@ void ajouter() {
 
         printf("entrez la date de reservation dd/mm/yy :");
         scanf("%s", dent[i].Date_de_reservation);
+        printf("-------------------------------------------\n");
     }
 
     size += taille;
@@ -85,7 +86,7 @@ void Modifier() {
     scanf("%d", &reference);
 
     for (i = 0; i < size; i++) {
-        if (dent[i].reference_unique == reference) {
+        if (dent[i].Reference_unique == reference) {
             printf("reference trouve pour le client.\n");
             trouve = 1;
             break;
@@ -160,18 +161,16 @@ void affichage() {
 void supprimer() {
     int j;
     int i;
-    char NAME[100];
-    printf("entree le nom du client a supprimer: ");
-    scanf("%s", NAME);
+    int id;
+    printf("entree le reference du client a supprimer: ");
+    scanf("%d",&id);
     int trouve = 0;
-
     for (i = 0; i < size; i++) {
-        if (strcmp(dent[i].Nom, NAME) == 0) {
+        if(dent[i].Reference_unique==id) {
             printf("client supprime.\n");
             trouve = 1;
-
-
-            for (j = i; j < size - 1; j++) {
+            for (j = i; j < size - 1; j++)
+            {
                 dent[j] = dent[j + 1];
             }
 
@@ -189,7 +188,7 @@ void Rechercher() {
     char NAME[100];
     int choix;
     do {
-        printf("xxxxxxxxxxxxxxxx:\n");
+        printf("   chercher par:\n   ");
         printf("\t1 - par nom\n");
         printf("\t2 - par reference\n");
         printf("\t3 - quitter\n");
@@ -236,16 +235,76 @@ void Rechercher() {
         }
     } while (choix != 3);
 }
+void tri(){
+dentaires temp;
+for(int j=1;j<=size;j++)
+    for(int i=0;i<size-1;i++)
+        if (strcmp(dent[i].Nom,dent[i+1].Nom)) {
+                temp = dent[i];
+                dent[i] = dent[i+1];
+                dent[i+1] = temp;
+        }
+printf("liste des noms tries par order croissant\n");
+for (int i=0;i<size;i++)
+{
+    printf("%s\n",dent[i].Nom);
+}
+
+}
+void tries_par_statut()
+{
+
+
+   for (int i=0;i<size;i++)
+   {
+       if (strcmp(dent[i].statut, "valide")==0)
+       {
+           printf("%s_%s\t",dent[i].Nom,dent[i].statut);
+       }
+       if (strcmp(dent[i].statut, "reporte")==0)
+       {
+           printf("%s-%s\t",dent[i].Nom,dent[i].statut);
+       }
+       if (strcmp(dent[i].statut, "annule")==0)
+       {
+           printf("%s-%s\t",dent[i].Nom,dent[i].statut);
+       }
+       if (strcmp(dent[i].statut, "traite")==0)
+       {
+           printf("%s-%s\t",dent[i].Nom,dent[i].statut);
+       }
+   }
+
+}
+void Statistiques ()
+{
+int somme=0;
+int moyen;
+for (int i=0;i<size;i++)
+{
+    somme+=dent[i].age;
+}
+for (int j=0;j<size;j++)
+{
+    moyen=somme/size;
+}
+printf("la moyen est:%d",moyen);
+}
+
 int main() {
     int choix;
     do {
+        printf("--------------------------------\n");
         printf(" menu :\n");
         printf("1. ajouter\n");
         printf("2. afficher\n");
         printf("3. modifier\n");
         printf("4. supprimer\n");
         printf("5. recherch\n");
-        printf("6. quitter\n");
+        printf("6. tries par nom\n");
+        printf("7. tries par statut\n");
+        printf("8. moyen\n");
+        printf("9. quitter\n");
         printf("choix numero du menu : ");
         scanf("%d", &choix);
         printf("--------------------------------\n");
@@ -267,12 +326,21 @@ int main() {
             Rechercher();
             break;
         case 6:
+            tri();
+            break;
+        case 7:
+            tries_par_statut();
+            break;
+        case 8:
+            Statistiques();
+            break;
+        case 9:
             printf("quitter le programme.\n");
             break;
         default:
             printf("numero non trouve.\n");
         }
-    } while (choix != 6);
+    } while (choix != 9);
 
     return 0;
 }
