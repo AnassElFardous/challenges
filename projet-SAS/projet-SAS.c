@@ -37,7 +37,7 @@ void ajouter() {
             if (strlen(tele) == 9) {
                 strcpy(dent[i].Telephone, tele);
             } else {
-                printf("Le numero doit contenir exactement 9 caracteres!!\n");
+                printf("numero doit contenir exactement 9 caracteres!!\n");
             }
         } while (strlen(tele) != 9);
 
@@ -78,8 +78,8 @@ void ajouter() {
     size += taille;
 }
 void ajouter_default() {
-    char noms[10][100] = {"Ahmed","Youssef","Fatima","Sara","Mohamed","Rania","Omar","Imane","Khalid","Nadia"};
-    char prenoms[10][100] = {"Bennani","ElFassi","Tazi","ElYousfi","Boulahcen","ElAmrani","Saidi","ElIdrissi","Zouhair","ElBakali"};
+    char noms[10][100] = {"ahmed","youssef","fatima","sara","mohamed","rania","omar","imane","khalid","nadia"};
+    char prenoms[10][100] = {"bennani","elfarisi","tazi","elyeousfi","boulahcen","elamrani","chafiq","elidrissi","zouhair","elbakali"};
 
     char statuts[4][100] = {"valide","reporte","annule","traite"};
 
@@ -91,11 +91,11 @@ void ajouter_default() {
 
         dent[i].age = 20 + rand() % 30;
 
-        sprintf(dent[i].Telephone, "06%d", rand() % 100000000);
+        sprintf(dent[i].Telephone, "(+212)06%d",rand()%100000);
 
         strcpy(dent[i].statut, statuts[rand() % 4]);
 
-        sprintf(dent[i].Date_de_reservation, "0%d/0%d/202%d", rand() % 30 + 1, rand() % 12 + 1, rand() % 4);
+        sprintf(dent[i].Date_de_reservation, "%d/%d/2024", rand() % 30 + 1, rand() % 12 + 1);
     }
 
     size = 10;
